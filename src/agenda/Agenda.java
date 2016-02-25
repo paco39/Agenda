@@ -40,8 +40,53 @@ public class Agenda {
         contactos.add(contacto); 
        
     }
+    public void buscarContacto(){
+        boolean realizarBusqueda=true;
+        int opcionBusqueda;
+        String nombreContacto;
+        while(realizarBusqueda==true){
+            System.out.println("Cómo desea buscar al contacto");
+            System.out.println("1.- Buscar por nombre");
+            System.out.println("2.- buscar por ocupacion");
+            System.out.println("3.- Buscar por fecha de nacimiento");
+            System.out.println("4.-Salir");
+            Scanner in = new Scanner(System.in);
+            opcionBusqueda=in.nextInt();
+            switch(opcionBusqueda){
+            case 1:
+                System.out.println("Ingrese el nombre del contacto");
+                nombreContacto=in.next();
+                for( int i = 0 ; i  < contactos.size(); i++){
+                    System.out.println("---");
+                    if(contactos.get(i).getNombre()==nombreContacto){
+                        System.out.println("-------------------------------------");
+                        System.out.println("Contacto "+(i+1));
+                        System.out.println("Nombre: "+contactos.get(i).getNombre());
+                        System.out.println("Direccion: "+contactos.get(i).getDireccion());
+                        System.out.println("Fecha de Nacimiento: "+contactos.get(i).getFechaNacimiento());
+                        System.out.println("Ocupacion: "+contactos.get(i).getOcupacion());
+                        contactos.get(i).mostrarTelefonos();
+                        contactos.get(i).mostrarRedesSociales();
+                    }                        
+                }   
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                realizarBusqueda=false;
+                break;
+            default:
+                System.out.println("Ingrese una opcion valida");
+                break;
+        }
+        }
+    }
     public void eliminarContacto(){
-       
+      
     }
     public void editarContacto(){
     }
@@ -73,7 +118,8 @@ public class Agenda {
         System.out.println("1.- Agreagar contacto");
         System.out.println("2.- Eliminar contacto");
         System.out.println("3.- Mostrar contactos");
-            System.out.println("4.-Salir");
+        System.out.println("4.- Buscar contactos");
+        System.out.println("5.-Salir");
         x=in.nextInt();
         switch(x){
             case 1:
@@ -85,6 +131,9 @@ public class Agenda {
                 miAgenda.mostrarContactos();
                 break;
             case 4:
+                miAgenda.buscarContacto();
+                break;
+            case 5:
                 boleano=false;
                 break;
             default:
