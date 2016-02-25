@@ -58,7 +58,7 @@ public class Agenda {
                 nombreContacto=in.next();
                 for( int i = 0 ; i  < contactos.size(); i++){
                     System.out.println("---");
-                    if(contactos.get(i).getNombre()==nombreContacto){
+                    if(contactos.get(i).getNombre().equals(nombreContacto)){
                         System.out.println("-------------------------------------");
                         System.out.println("Contacto "+(i+1));
                         System.out.println("Nombre: "+contactos.get(i).getNombre());
