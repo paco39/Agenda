@@ -43,7 +43,7 @@ public class Agenda {
     public void buscarContacto(){
         boolean realizarBusqueda=true;
         int opcionBusqueda;
-        String nombreContacto;
+        String nombreContacto, ocupacionContacto, nacimientoContacto;
         while(realizarBusqueda==true){
             System.out.println("Cómo desea buscar al contacto");
             System.out.println("1.- Buscar por nombre");
@@ -71,10 +71,38 @@ public class Agenda {
                 }   
                 break;
             case 2:
-                
+                System.out.println("Ingrese la ocupacion del contacto");
+                ocupacionContacto=in.next();
+                for( int i = 0 ; i  < contactos.size(); i++){
+                    System.out.println("---");
+                    if(contactos.get(i).getOcupacion().equals(ocupacionContacto)){
+                        System.out.println("-------------------------------------");
+                        System.out.println("Contacto "+(i+1));
+                        System.out.println("Nombre: "+contactos.get(i).getNombre());
+                        System.out.println("Direccion: "+contactos.get(i).getDireccion());
+                        System.out.println("Fecha de Nacimiento: "+contactos.get(i).getFechaNacimiento());
+                        System.out.println("Ocupacion: "+contactos.get(i).getOcupacion());
+                        contactos.get(i).mostrarTelefonos();
+                        contactos.get(i).mostrarRedesSociales();
+                    }                        
+                }
                 break;
             case 3:
-                
+                System.out.println("Ingrese la ocupacion del contacto");
+                nacimientoContacto=in.next();
+                for( int i = 0 ; i  < contactos.size(); i++){
+                    System.out.println("---");
+                    if(contactos.get(i).getFechaNacimiento().equals(nacimientoContacto)){
+                        System.out.println("-------------------------------------");
+                        System.out.println("Contacto "+(i+1));
+                        System.out.println("Nombre: "+contactos.get(i).getNombre());
+                        System.out.println("Direccion: "+contactos.get(i).getDireccion());
+                        System.out.println("Fecha de Nacimiento: "+contactos.get(i).getFechaNacimiento());
+                        System.out.println("Ocupacion: "+contactos.get(i).getOcupacion());
+                        contactos.get(i).mostrarTelefonos();
+                        contactos.get(i).mostrarRedesSociales();
+                    }                        
+                }
                 break;
             case 4:
                 realizarBusqueda=false;
@@ -86,9 +114,24 @@ public class Agenda {
         }
     }
     public void eliminarContacto(){
-      
+      if (contactos.isEmpty()){
+          System.out.println("La lista esta vacia");
+      }else{
+        
+        Scanner in = new Scanner(System.in);
+        String nombreContactoEliminar;
+        System.out.println("Ingrese el nombre del contacto");
+        nombreContactoEliminar=in.next();
+        for(int i=0; i<contactos.size(); i++){
+          if(contactos.get(i).getNombre().equals(nombreContactoEliminar)){
+            contactos.remove(i);
+            System.out.println("Contacto eliminado!!!");
+         }
+        }
+      }
     }
     public void editarContacto(){
+        
     }
     public int tamanoLista(){                                   //Función que regresa el numero de 
         int x=0;                                                //contactos guardados en la agenda
@@ -115,7 +158,7 @@ public class Agenda {
         miAgenda= new Agenda();
         Scanner in = new Scanner(System.in);
         while(boleano==true){
-        System.out.println("1.- Agreagar contacto");
+        System.out.println("1.- Agregar contacto");
         System.out.println("2.- Eliminar contacto");
         System.out.println("3.- Mostrar contactos");
         System.out.println("4.- Buscar contactos");
@@ -126,6 +169,7 @@ public class Agenda {
                 miAgenda.registrarContacto();
                 break;
             case 2:
+                miAgenda.eliminarContacto();
                 break;
             case 3:
                 miAgenda.mostrarContactos();
